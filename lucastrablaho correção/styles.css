@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #111;
+}
+
+.container {
+  max-width: 500px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.lista {
+  list-style: none;
+  padding: 0;
+}
+
+.lista li {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.3);
+}
+
+.botao {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background-color: #111;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.botao:hover {
+  background-color: #333;
+}
+
+.data {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}

@@ -1,0 +1,233 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo e fonte */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+/* Cabeçalho */
+header {
+  background-color: #002b5b;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  position: relative;
+}
+
+header .logo {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+/* Menu padrão (desktop) */
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  color: #ffc107;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.menu a:hover {
+  color: #fff;
+}
+
+/* Botão "Ajustes" */
+.menu-icon {
+  display: none;
+  background: #ffc107;
+  color: #002b5b;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1em;
+  transition: 0.3s;
+}
+
+.menu-icon:hover {
+  background: #ffcf33;
+}
+
+/* Oculta o checkbox */
+#menu-toggle {
+  display: none;
+}
+
+/* Seção principal (hero) */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(to right, #002b5b, #00509e);
+  color: white;
+}
+
+.hero h1 {
+  font-size: 2.2em;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #ffc107;
+  color: #002b5b;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #ffcf33;
+}
+
+/* Seção sobre */
+.sobre {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+}
+
+.sobre h2 {
+  color: #002b5b;
+  margin-bottom: 15px;
+}
+
+/* Formulários */
+.form-container {
+  max-width: 400px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.form-container h1 {
+  text-align: center;
+  color: #002b5b;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  background-color: #002b5b;
+  color: white;
+  padding: 15px;
+  margin-top: 50px;
+  font-size: 0.9em;
+}
+
+/* ========================= */
+/* 🔹 RESPONSIVIDADE */
+/* ========================= */
+
+/* Tablets e telas médias */
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #003b7b;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    top: 60px;
+    left: 0;
+  }
+
+  #menu-toggle:checked + .menu-icon + .menu {
+    display: flex;
+  }
+
+  .hero h1 {
+    font-size: 1.8em;
+  }
+
+  .btn {
+    width: 80%;
+    max-width: 250px;
+  }
+
+  .form-container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu a {
+    display: block;
+    padding: 10px 0;
+  }
+
+  .hero {
+    padding: 50px 15px;
+  }
+
+  .hero h1 {
+    font-size: 1.5em;
+  }
+
+  .hero p {
+    font-size: 0.9em;
+  }
+
+  .form-container {
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  footer {
+    font-size: 0.8em;
+    padding: 10px;
+  }
+}
+

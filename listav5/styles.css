@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafc;
+  color: #2c3e50;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 520px;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 36px 40px;
+  border-radius: 16px;
+  box-shadow: 0 12px 25px rgba(44, 62, 80, 0.12);
+  transition: box-shadow 0.3s ease;
+}
+
+.container:hover {
+  box-shadow: 0 16px 40px rgba(44, 62, 80, 0.2);
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 28px;
+  color: #34495e;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.lista {
+  list-style: none;
+  padding: 0;
+}
+
+.lista li {
+  margin: 14px 0;
+  display: flex;
+  align-items: center;
+  background-color: #f4f7fa;
+  padding: 14px 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 7px rgba(44, 62, 80, 0.05);
+  transition: background-color 0.3s ease;
+}
+
+.lista li:hover {
+  background-color: #e3ebf6;
+}
+
+input[type="checkbox"] {
+  margin-right: 16px;
+  transform: scale(1.4);
+  cursor: pointer;
+  accent-color: #5578eb;
+  transition: accent-color 0.3s ease;
+}
+
+input[type="checkbox"]:hover {
+  accent-color: #2c3e50;
+}
+
+.botao {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 28px;
+  background: linear-gradient(90deg, #5578eb 0%, #305fd1 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 18px;
+  box-shadow: 0 8px 20px rgba(85, 120, 235, 0.4);
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.botao:hover {
+  background: linear-gradient(90deg, #305fd1 0%, #1f3bb3 100%);
+  box-shadow: 0 10px 28px rgba(31, 59, 179, 0.6);
+}
+
+.data {
+  margin-top: 28px;
+  font-size: 14px;
+  color: #7f8c8d;
+  text-align: center;
+  font-style: italic;
+}

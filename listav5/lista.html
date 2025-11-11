@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Minha Lista de Compras</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f9fbfd;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #2c3e50;
+      padding: 30px 15px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    header {
+      background: linear-gradient(90deg, #f1f7d5, #d9e7a3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 15px 30px;
+      margin-bottom: 30px;
+      border-radius: 12px;
+    }
+
+    header ul {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      gap: 20px;
+    }
+
+    header a {
+      text-decoration: none;
+      color: #34495e;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    header a:hover {
+      background-color: #6fb96f;
+      color: white;
+      box-shadow: 0 3px 10px rgba(111, 185, 111, 0.5);
+    }
+
+   
+    .botao-menu a {
+      text-decoration: none;
+      background: transparent;
+      color: #4f8f4f;
+      padding: 12px 28px;
+      font-weight: 700;
+      font-size: 18px;
+      border: 2px solid #6fb96f;
+      border-radius: 50px;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .botao-menu a:hover {
+      background: #6fb96f;
+      color: white;
+      box-shadow: 0 8px 20px rgba(79, 143, 79, 0.4);
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 35px 40px;
+      border-radius: 16px;
+      box-shadow: 0 14px 30px rgba(44, 62, 80, 0.12);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #34495e;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    .search {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .search input[type="search"] {
+      padding: 14px 18px;
+      border: 2px solid #c4d3ca;
+      border-radius: 12px;
+      width: 240px;
+      font-size: 16px;
+      color: #34495e;
+      background: #f0f6f2;
+    }
+
+    .search button {
+      padding: 14px 26px;
+      background: linear-gradient(90deg, #6fb96f 0%, #4f8f4f 100%);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 0 6px 16px rgba(111, 185, 111, 0.6);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .search button:hover {
+      background: linear-gradient(90deg, #4f8f4f 0%, #3b6b3b 100%);
+      box-shadow: 0 8px 20px rgba(59, 107, 59, 0.8);
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #3a5068;
+      border-bottom: 2px solid #7b9acc;
+      padding-bottom: 6px;
+    }
+
+    .lista {
+      list-style: none;
+      padding: 0;
+      max-height: 350px;
+      overflow-y: auto;
+    }
+
+    .lista li {
+      background: #e3f0df;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border-radius: 14px;
+      font-size: 16px;
+      color: #2c3e50;
+      box-shadow: 0 3px 8px rgba(46, 61, 73, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lista li button {
+      background: #e74c3c;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .lista li button:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <ul>
+      <li class="botao-menu"><a href="bemvindo.html">← Voltar ao Menu</a></li>
+      <li><a href="adicionar.html">Comprar mais</a></li>  
+    </ul>
+  </header>
+
+  <div class="container">
+    <h1>Minha Lista de Compras</h1>
+    <div class="search">
+      <input id="searchInput" type="search" placeholder="Pesquisar item" />
+      <button id="searchBtn">Pesquisar</button>
+    </div>
+
+    <div class="itens">
+      <h2>Itens recentes</h2>
+      <ul class="lista" id="listaCompras"></ul>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const lista = document.getElementById('listaCompras');
+
+    let compras = JSON.parse(localStorage.getItem('compras')) || [
+      "Arroz", "Feijão", "Leite", "Queijo", "Feijoada", "Pão",
+      "Manteiga", "Tomate", "Cebola", "Macarrão", "Carne",
+      "Frango", "Salada", "Ovos", "Frutas"
+    ];
+
+    function renderizarLista(filtro = "") {
+      lista.innerHTML = "";
+      compras
+        .filter(item => item.toLowerCase().includes(filtro.toLowerCase()))
+        .forEach((item, index) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+
+          const btnExcluir = document.createElement("button");
+          btnExcluir.textContent = "Excluir";
+          btnExcluir.addEventListener("click", () => excluirItem(index));
+
+          li.appendChild(btnExcluir);
+          lista.appendChild(li);
+        });
+    }
+
+    function excluirItem(index) {
+      if (confirm("Deseja realmente excluir este item da lista?")) {
+        compras.splice(index, 1);
+        localStorage.setItem("compras", JSON.stringify(compras));
+        renderizarLista(searchInput.value);
+      }
+    }
+
+    function filtrarLista() {
+      renderizarLista(searchInput.value);
+    }
+
+    searchBtn.addEventListener('click', filtrarLista);
+    searchInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') filtrarLista();
+    });
+
+    renderizarLista();
+  </script>
+</body>
+</html>
+

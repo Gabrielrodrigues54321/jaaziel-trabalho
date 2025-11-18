@@ -1,264 +1,228 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lista de Compras - Adicionar Item</title>
-  <style>
-    /* Reset básico */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9fbfd;
-      color: #2c3e50;
-      padding: 30px 15px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    .container {
-      max-width: 600px;
-      background: #fff;
-      margin: 40px auto;
-      padding: 40px 50px;
-      border-radius: 16px;
-      box-shadow: 0 14px 30px rgba(44, 62, 80, 0.12);
-    }
-
-    h1 {
-      font-size: 32px;
-      margin-bottom: 30px;
-      text-align: center;
-      color: #34495e;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.3px;
-    }
-
-    form label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 8px;
-      margin-top: 20px;
-      color: #3a5068;
-    }
-
-    form input[type="text"] {
-      width: 100%;
-      padding: 14px 18px;
-      font-size: 16px;
-      border-radius: 12px;
-      border: 2px solid #c4d3ca;
-      background: #f0f6f2;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    form input[type="text"]:focus {
-      outline: none;
-      border-color: #6fb96f;
-      box-shadow: 0 0 8px rgba(111, 185, 111, 0.6);
-      background: #fff;
-    }
-
-    form button {
-      margin-top: 30px;
-      width: 100%;
-      padding: 16px 0;
-      font-size: 18px;
-      font-weight: 700;
-      color: white;
-      background: linear-gradient(90deg, #5578eb 0%, #305fd1 100%);
-      border: none;
-      border-radius: 16px;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(85, 120, 235, 0.4);
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    form button:hover {
-      background: linear-gradient(90deg, #305fd1 0%, #1f3bb3 100%);
-      box-shadow: 0 10px 28px rgba(31, 59, 179, 0.6);
-    }
-
-    h2 {
-      margin-top: 50px;
-      margin-bottom: 20px;
-      font-size: 24px;
-      color: #3a5068;
-      border-bottom: 2px solid #7b9acc;
-      padding-bottom: 8px;
-    }
-
-    .lista {
-      list-style: none;
-      max-height: 300px;
-      overflow-y: auto;
-      padding-left: 0;
-    }
-
-    .lista li {
-      background: #e3f0df;
-      padding: 14px 20px;
-      margin: 10px 0;
-      border-radius: 16px;
-      font-size: 17px;
-      color: #2c3e50;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 3px 8px rgba(46, 61, 73, 0.08);
-      transition: background-color 0.3s ease;
-      cursor: default;
-    }
-
-    .lista li:hover {
-      background-color: #d1e7c9;
-      box-shadow: 0 5px 12px rgba(46, 61, 73, 0.15);
-    }
-
-    .lista li input[type="checkbox"] {
-      margin-right: 18px;
-      transform: scale(1.4);
-      accent-color: #5578eb;
-      cursor: pointer;
-      transition: accent-color 0.3s ease;
-    }
-
-    .btn-excluir {
-      margin-top: 30px;
-      width: 100%;
-      padding: 16px 0;
-      background-color: #c0392b;
-      color: white;
-      font-weight: 700;
-      font-size: 18px;
-      border: none;
-      border-radius: 16px;
-      cursor: pointer;
-      box-shadow: 0 7px 20px rgba(192, 57, 43, 0.6);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .btn-excluir:hover {
-      background-color: #a93226;
-      box-shadow: 0 9px 28px rgba(169, 50, 38, 0.8);
-    }
-
-    .link-finalizar {
-      margin-top: 40px;
-      text-align: center;
-    }
-
-    .link-finalizar a {
-      display: inline-block;
-      padding: 12px 28px;
-      background-color: #2980b9;
-      color: white;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 18px;
-      border-radius: 16px;
-      box-shadow: 0 7px 20px rgba(41, 128, 185, 0.6);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .link-finalizar a:hover {
-      background-color: #2471a3;
-      box-shadow: 0 10px 28px rgba(36, 113, 163, 0.8);
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Lista de Compras Premium</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+  body {margin:0;font-family:'Roboto',sans-serif;background:#f4f6f8;display:flex;min-height:100vh;}
+  .sidebar {width:220px;background:#4CAF50;color:white;display:flex;flex-direction:column;padding-top:20px;flex-shrink:0;}
+  .sidebar h2 {text-align:center;margin-bottom:30px;}
+  .sidebar a {padding:15px 20px;text-decoration:none;color:white;font-weight:500;transition:0.3s;cursor:pointer;}
+  .sidebar a:hover, .sidebar a.active {background:rgba(255,255,255,0.2);}
+  .main {flex:1;padding:40px;}
+  h1,h2 {color:#333;}
+  form {display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
+  form input, form button, form select {padding:10px;font-size:16px;border-radius:5px;border:1px solid #ccc;}
+  form input, form select {flex:1 1 200px;}
+  form button {background:#4CAF50;color:white;border:none;cursor:pointer;transition:0.3s;}
+  form button:hover {background:#45a049;}
+  table {width:100%;border-collapse:collapse;background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+  th,td {padding:12px;text-align:center;border-bottom:1px solid #ddd;}
+  th {background:#4CAF50;color:white;}
+  td button {background:#f44336;color:white;border:none;padding:6px 10px;border-radius:5px;cursor:pointer;margin-left:5px;}
+  td button.edit {background:#ff9800;}
+  td button:hover {opacity:0.8;}
+  .stats {background:white;padding:20px;border-radius:8px;max-width:800px;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+  .stats p {font-size:18px;margin:10px 0;}
+  .filters {margin-bottom:20px; display:flex; gap:10px; flex-wrap:wrap;}
+  canvas {background:white;border-radius:8px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,0.1);margin-top:20px;}
+</style>
 </head>
 <body>
-  <div class="container">
+
+<div class="sidebar">
+  <h2>Minha Lista</h2>
+  <a class="active" onclick="showSection('add')">Adicionar Item</a>
+  <a onclick="showSection('list')">Ver Lista</a>
+  <a onclick="showSection('stats')">Estatísticas</a>
+</div>
+
+<div class="main">
+  <!-- Adicionar Item -->
+  <div id="add">
     <h1>Adicionar Item</h1>
-
-    <form class="form-adicionar" id="formAdicionar">
-      <label for="nome-item">Nome do item:</label>
-      <input type="text" id="nome-item" name="nome-item" required>
-
-      <label for="quantidade">Quantidade:</label>
-      <input type="text" id="quantidade" name="quantidade">
-
-      <label for="observacoes">Observações:</label>
-      <input type="text" id="observacoes" name="observacoes">
-
+    <form id="shoppingForm">
+      <input type="text" id="itemName" placeholder="Nome do item" required>
+      <input type="number" id="itemQty" placeholder="Quantidade" min="1" required>
+      <input type="number" id="itemKg" placeholder="Peso (kg)" min="0.01" step="0.01" required>
+      <input type="date" id="itemDate" required>
       <button type="submit">Adicionar</button>
     </form>
-
-    <h2>Itens da Lista</h2>
-    <ul class="lista" id="listaItens">
-      <li><input type="checkbox" checked> Arroz - 5kg</li>
-      <li><input type="checkbox" checked> Feijão - 1kg</li>
-      <li><input type="checkbox" checked> Leite</li>
-      <li><input type="checkbox" checked> Queijo</li>
-      <li><input type="checkbox" checked> Feijoada</li>
-    </ul>
-
-    <button class="btn-excluir" id="btnExcluir">Excluir Compras</button>
-
-    <div class="link-finalizar">
-      <a href="finalizarcompras.html">Finalizar</a>
-    </div>
   </div>
 
-  <script>
-    const form = document.getElementById('formAdicionar');
-    const listaItens = document.getElementById('listaItens');
-    const btnExcluir = document.getElementById('btnExcluir');
+  <!-- Ver Lista -->
+  <div id="list" style="display:none;">
+    <h1>Itens Comprados</h1>
+    <div class="filters">
+      <input type="text" id="filterName" placeholder="Filtrar por nome">
+      <input type="date" id="filterDate">
+      <button onclick="applyFilters()">Aplicar Filtro</button>
+      <button onclick="resetFilters()">Resetar Filtro</button>
+      <button onclick="exportCSV()">Exportar CSV</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Quantidade</th>
+          <th>Peso (kg)</th>
+          <th>Data</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="shoppingTable"></tbody>
+    </table>
+  </div>
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
+  <!-- Estatísticas -->
+  <div id="stats" style="display:none;">
+    <h1>Estatísticas</h1>
+    <div class="stats">
+      <p id="totalItems">Total de itens: 0</p>
+      <p id="totalQty">Total de quantidade: 0</p>
+      <p id="totalKg">Total de peso: 0 kg</p>
+      <canvas id="chartQty" width="400" height="200"></canvas>
+      <canvas id="chartKg" width="400" height="200"></canvas>
+    </div>
+  </div>
+</div>
 
-      // Pega valores do formulário
-      const nome = document.getElementById('nome-item').value.trim();
-      const quantidade = document.getElementById('quantidade').value.trim();
-      const observacoes = document.getElementById('observacoes').value.trim();
+<script>
+let shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+let filteredList = [...shoppingList];
+let chartQty, chartKg;
 
-      if (!nome) {
-        alert('Por favor, preencha o nome do item.');
-        return;
-      }
+const sections = { add: document.getElementById('add'), list: document.getElementById('list'), stats: document.getElementById('stats')};
+const sidebarLinks = document.querySelectorAll('.sidebar a');
 
-      // Monta texto do item
-      let textoItem = nome;
-      if (quantidade) textoItem += ` - ${quantidade}`;
-      if (observacoes) textoItem += ` (${observacoes})`;
+function showSection(section){
+  for(const sec in sections) sections[sec].style.display='none';
+  sections[section].style.display='block';
+  sidebarLinks.forEach(link=>link.classList.remove('active'));
+  sidebarLinks[[...sidebarLinks].findIndex(a=>a.textContent.includes(section.charAt(0).toUpperCase()+section.slice(1)))]?.classList.add('active');
+  updateTable();
+  updateStats();
+}
 
-      // Cria novo item na lista com checkbox marcado
-      const li = document.createElement('li');
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.checked = true;
-      li.appendChild(checkbox);
-      li.appendChild(document.createTextNode(' ' + textoItem));
+// Adicionar item
+document.getElementById('shoppingForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const name = document.getElementById('itemName').value;
+  const qty = Number(document.getElementById('itemQty').value);
+  const kg = Number(document.getElementById('itemKg').value);
+  const date = document.getElementById('itemDate').value;
 
-      // Adiciona item na lista
-      listaItens.appendChild(li);
+  shoppingList.push({name, qty, kg, date});
+  localStorage.setItem('shoppingList',JSON.stringify(shoppingList));
+  this.reset();
+  showSection('list');
+});
 
-      // Limpa formulário
-      form.reset();
-      document.getElementById('nome-item').focus();
-    });
+// Atualizar tabela
+function updateTable(){
+  const table=document.getElementById('shoppingTable');
+  table.innerHTML='';
+  filteredList.forEach((item,index)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td>${item.name}</td>
+      <td>${item.qty}</td>
+      <td>${item.kg}</td>
+      <td>${item.date}</td>
+      <td>
+        <button class="edit" onclick="editItem(${index})">Editar</button>
+        <button onclick="removeItem(${index})">Remover</button>
+      </td>`;
+    table.appendChild(tr);
+  });
+}
 
-    btnExcluir.addEventListener('click', function() {
-      // Pega todos os li da lista
-      const itens = listaItens.querySelectorAll('li');
+// Remover item
+function removeItem(index){
+  shoppingList.splice(index,1);
+  saveAndRefresh();
+}
 
-      itens.forEach(item => {
-        const checkbox = item.querySelector('input[type="checkbox"]');
-        if (checkbox && checkbox.checked) {
-          item.remove();
-        }
-      });
-    });
-  </script>
+// Editar item
+function editItem(index){
+  const item=filteredList[index];
+  document.getElementById('itemName').value=item.name;
+  document.getElementById('itemQty').value=item.qty;
+  document.getElementById('itemKg').value=item.kg;
+  document.getElementById('itemDate').value=item.date;
+  showSection('add');
+  shoppingList.splice(shoppingList.indexOf(item),1);
+  saveAndRefresh(false);
+}
+
+// Salvar e atualizar tabela e estatísticas
+function saveAndRefresh(updateStatsFlag=true){
+  localStorage.setItem('shoppingList',JSON.stringify(shoppingList));
+  filteredList=[...shoppingList];
+  updateTable();
+  if(updateStatsFlag) updateStats();
+}
+
+// Atualizar estatísticas e gráficos
+function updateStats(){
+  const totalItems=shoppingList.length;
+  const totalQty=shoppingList.reduce((sum,item)=>sum+item.qty,0);
+  const totalKg=shoppingList.reduce((sum,item)=>sum+item.kg,0);
+  document.getElementById('totalItems').textContent=`Total de itens: ${totalItems}`;
+  document.getElementById('totalQty').textContent=`Total de quantidade: ${totalQty}`;
+  document.getElementById('totalKg').textContent=`Total de peso: ${totalKg.toFixed(2)} kg`;
+
+  const names = shoppingList.map(i=>i.name);
+  const qtys = shoppingList.map(i=>i.qty);
+  const kgs = shoppingList.map(i=>i.kg);
+
+  if(chartQty) chartQty.destroy();
+  if(chartKg) chartKg.destroy();
+
+  const ctxQty = document.getElementById('chartQty').getContext('2d');
+  chartQty = new Chart(ctxQty, {type:'bar', data:{labels:names,datasets:[{label:'Quantidade',data:qtys,backgroundColor:'#4CAF50'}]}, options:{responsive:true,plugins:{legend:{display:false}}}});
+
+  const ctxKg = document.getElementById('chartKg').getContext('2d');
+  chartKg = new Chart(ctxKg, {type:'line', data:{labels:names,datasets:[{label:'Peso (kg)',data:kgs,borderColor:'#FF9800',backgroundColor:'rgba(255,152,0,0.2)',fill:true,tension:0.3} ]}, options:{responsive:true,plugins:{legend:{display:true}}}});
+}
+
+// Filtros
+function applyFilters(){
+  const nameFilter=document.getElementById('filterName').value.toLowerCase();
+  const dateFilter=document.getElementById('filterDate').value;
+  filteredList=shoppingList.filter(item=>{
+    return (!nameFilter || item.name.toLowerCase().includes(nameFilter)) &&
+           (!dateFilter || item.date===dateFilter);
+  });
+  updateTable();
+}
+function resetFilters(){
+  document.getElementById('filterName').value='';
+  document.getElementById('filterDate').value='';
+  filteredList=[...shoppingList];
+  updateTable();
+}
+
+// Exportar CSV
+function exportCSV(){
+  let csv='Item,Quantidade,Peso(kg),Data\n';
+  shoppingList.forEach(item=>{
+    csv+=`${item.name},${item.qty},${item.kg},${item.date}\n`;
+  });
+  const blob=new Blob([csv],{type:'text/csv'});
+  const link=document.createElement('a');
+  link.href=URL.createObjectURL(blob);
+  link.download='lista_compras.csv';
+  link.click();
+}
+
+// Inicialização
+updateTable();
+updateStats();
+</script>
+
 </body>
 </html>
-
-
-
 

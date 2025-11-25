@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Minha Lista de Compras</title>
+    <link rel="stylesheet" href="/CSS/lista.css" />
+    <style></style>
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li class="botao-menu"><a href="bemvindo.html">← Voltar ao Menu</a></li>
+        <li><a href="adicionar.html">Comprar mais</a></li>
+      </ul>
+    </header>
+
+    <div class="container">
+      <h1>Minha Lista de Compras</h1>
+      <div class="search">
+        <input id="searchInput" type="search" placeholder="Pesquisar item" />
+        <button id="searchBtn">Pesquisar</button>
+      </div>
+
+      <div class="itens">
+        <h2>Itens recentes</h2>
+        <ul class="lista" id="listaCompras"></ul>
+      </div>
+    </div>
+
+    <dialog class="modal">
+      <h2>Informações do Item</h2>
+
+      <p class="nome">Nome: <span></span></p>
+      <p class="quantidade">Quantidade: <span></span></p>
+      <p class="observacao">Observação: <span></span></p>
+      <p class="data">Data: <span></span></p>
+
+      <button type="button" class="btn close" onclick="fecharInformacoesItem()">
+        X
+      </button>
+    </div>
+
+    <script src="/JAVA/lista.js" defer></script>
+  </body>
+</html>
